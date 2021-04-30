@@ -63,13 +63,14 @@ class MainActivity : AppCompatActivity(), Observer {
 
         counter = SimpleCounter(startValue)
         counter.subscribe(this)
+        update()
     }
 
     private fun updateCounterDisplayColor(color : Int){
         try {
             val resolvedColor = getColor(color)
-            counterDisplay.setBackgroundColor(color)
-            CounterPreferencesManager.storedCounterColor = resolvedColor
+            counterDisplay.setBackgroundColor(resolvedColor)
+            CounterPreferencesManager.storedCounterColor = color
         }catch (a : Resources.NotFoundException){
             counterDisplay.setBackgroundColor(0)
             CounterPreferencesManager.storedCounterColor = 0
