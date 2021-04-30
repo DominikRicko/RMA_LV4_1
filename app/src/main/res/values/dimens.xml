@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="counterFontSize">30sp</dimen>
+    <dimen name="counterFontSize">40sp</dimen>
 </resources>

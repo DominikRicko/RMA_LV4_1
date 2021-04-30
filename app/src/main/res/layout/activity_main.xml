@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5"/>
+        app:layout_constraintGuide_percent="0.5" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide_top"
@@ -55,55 +55,70 @@
     <Button
         android:id="@+id/btn_redBird"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="@id/guide_start"
         app:layout_constraintEnd_toEndOf="@id/guide_center"
         app:layout_constraintTop_toBottomOf="@id/tv_birdCounter"
-        android:text="@string/redBird"
+        app:layout_constraintBottom_toTopOf="@id/btn_blueBird"
+        android:text="@string/red_bird"
         />
 
     <Button
         android:id="@+id/btn_brownBird"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="@id/guide_center"
         app:layout_constraintEnd_toEndOf="@id/guide_end"
         app:layout_constraintTop_toBottomOf="@id/tv_birdCounter"
-        android:text="@string/brownBird"
+        app:layout_constraintBottom_toTopOf="@id/btn_grayBird"
+        android:text="@string/brown_bird"
         />
     
     <Button
         android:id="@+id/btn_blueBird"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="@id/guide_start"
         app:layout_constraintEnd_toEndOf="@id/guide_center"
         app:layout_constraintTop_toBottomOf="@id/btn_redBird"
-        android:text="@string/blueBird"
+        app:layout_constraintBottom_toBottomOf="@id/guide_centerHorizontal"
+        android:text="@string/blue_bird"
         />
 
     <Button
         android:id="@+id/btn_grayBird"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="@id/guide_center"
         app:layout_constraintEnd_toEndOf="@id/guide_end"
         app:layout_constraintTop_toBottomOf="@id/btn_brownBird"
-        android:text="@string/grayBird"
+        app:layout_constraintBottom_toBottomOf="@id/guide_centerHorizontal"
+        android:text="@string/gray_bird"
         />
-    
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide_centerHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5"/>
+
     <Button
         android:id="@+id/btn_resetCounter"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@id/guide_start"
         app:layout_constraintEnd_toEndOf="@id/guide_center"
-        app:layout_constraintTop_toBottomOf="@id/btn_blueBird"
+        app:layout_constraintTop_toTopOf="@id/guide_centerHorizontal"
         android:text="@string/reset_counter"/>
     
     <Button
-        android:layout_width=""
-        android:layout_height=""
-        
+        android:id="@+id/btn_resetColor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/guide_center"
+        app:layout_constraintEnd_toEndOf="@id/guide_end"
+        app:layout_constraintTop_toTopOf="@id/guide_centerHorizontal"
+        android:text="@string/reset_color"/>
     
 </androidx.constraintlayout.widget.ConstraintLayout>
