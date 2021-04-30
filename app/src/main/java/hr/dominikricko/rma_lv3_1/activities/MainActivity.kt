@@ -1,5 +1,6 @@
 package hr.dominikricko.rma_lv3_1.activities
 
+import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
@@ -23,30 +24,30 @@ class MainActivity : AppCompatActivity(), Observer {
         counterDisplay = binding.tvBirdCounter
 
         initializeNewCounter(CounterPreferencesManager.storedCounterValue)
-        counterDisplay.setBackgroundColor(CounterPreferencesManager.storedCounterColor)
+        updateCounterDisplayColor(CounterPreferencesManager.storedCounterColor)
 
         binding.btnBlueBird.setOnClickListener {
             counter.incrementCounter()
-            counterDisplay.setBackgroundColor(getColor(R.color.blue))
+            updateCounterDisplayColor(R.color.blue)
         }
 
         binding.btnBrownBird.setOnClickListener {
             counter.incrementCounter()
-            counterDisplay.setBackgroundColor(getColor(R.color.brown))
+            updateCounterDisplayColor(R.color.brown)
         }
 
         binding.btnRedBird.setOnClickListener {
             counter.incrementCounter()
-            counterDisplay.setBackgroundColor(getColor(R.color.red))
+            updateCounterDisplayColor(R.color.red)
         }
 
         binding.btnGrayBird.setOnClickListener {
             counter.incrementCounter()
-            counterDisplay.setBackgroundColor(getColor(R.color.gray))
+            updateCounterDisplayColor(R.color.gray)
         }
 
         binding.btnResetColor.setOnClickListener {
-            counterDisplay.setBackgroundColor(0)
+            updateCounterDisplayColor(0)
         }
 
         binding.btnResetCounter.setOnClickListener {
@@ -62,6 +63,18 @@ class MainActivity : AppCompatActivity(), Observer {
 
         counter = SimpleCounter(startValue)
         counter.subscribe(this)
+    }
+
+    private fun updateCounterDisplayColor(color : Int){
+        try {
+            val resolvedColor = getColor(color)
+            counterDisplay.setBackgroundColor(color)
+            CounterPreferencesManager.storedCounterColor = resolvedColor
+        }catch (a : Resources.NotFoundException){
+            counterDisplay.setBackgroundColor(0)
+            CounterPreferencesManager.storedCounterColor = 0
+        }
+
     }
 
     override fun update() {
