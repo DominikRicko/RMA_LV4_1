@@ -8,6 +8,7 @@ import hr.dominikricko.rma_lv3_1.databinding.ActivityMainBinding
 import hr.dominikricko.rma_lv3_1.counter.Counter
 import hr.dominikricko.rma_lv3_1.counter.SimpleCounter
 import hr.dominikricko.rma_lv3_1.observable.Observer
+import hr.dominikricko.rma_lv3_1.preferences.CounterPreferencesManager
 
 class MainActivity : AppCompatActivity(), Observer {
 
@@ -21,7 +22,8 @@ class MainActivity : AppCompatActivity(), Observer {
         binding = ActivityMainBinding.inflate(layoutInflater)
         counterDisplay = binding.tvBirdCounter
 
-        initializeNewCounter(0)
+        initializeNewCounter(CounterPreferencesManager.storedCounterValue)
+        counterDisplay.setBackgroundColor(CounterPreferencesManager.storedCounterColor)
 
         binding.btnBlueBird.setOnClickListener {
             counter.incrementCounter()
