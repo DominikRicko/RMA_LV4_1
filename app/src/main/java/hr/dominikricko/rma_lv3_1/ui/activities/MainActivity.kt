@@ -6,7 +6,6 @@ import androidx.databinding.DataBindingUtil
 import hr.dominikricko.rma_lv3_1.R
 import hr.dominikricko.rma_lv3_1.databinding.ActivityMainBinding
 import hr.dominikricko.rma_lv3_1.ui.viewmodel.CounterViewModel
-import hr.dominikricko.rma_lv3_1.utilities.ColorResourceGetter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -28,9 +27,6 @@ class MainActivity : AppCompatActivity() {
             it.btnResetColor.setOnClickListener { viewModel.resetColor() }
             it.btnResetCounter.setOnClickListener { viewModel.resetCounter() }
         }
-
-        viewModel.birdColorSeen.observe(this)
-        {binding.tvBirdCounter.setBackgroundColor(ColorResourceGetter.getColor(it))}
 
     }
 

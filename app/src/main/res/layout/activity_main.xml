@@ -59,6 +59,7 @@
         app:layout_constraintRight_toRightOf="@id/guide_end"
         app:layout_constraintTop_toTopOf="@id/guide_top"
         app:text="@{String.valueOf(viewModel.birdsSeen)}"
+        android:background="@{context.getColor(viewModel.birdColorSeen)}"
         android:textSize="@dimen/counterFontSize"/>
     
     <Button
