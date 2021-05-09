@@ -7,7 +7,7 @@ import org.koin.dsl.module
 
 
 val appModule = module{
-    factory<Counter>{ SimpleCounter() }
+    factory{ SimpleCounter() }
 }
 
 val viewModel = module{
