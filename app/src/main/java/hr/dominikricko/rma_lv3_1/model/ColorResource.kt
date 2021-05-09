@@ -7,7 +7,11 @@ import hr.dominikricko.rma_lv3_1.persistence.CounterPreferencesManager
 
 class ColorResource {
 
-    var color : Int = 0
+    constructor(color: Int){
+        this.color = color
+    }
+
+    var color : Int
     get() {
         return try{
             ContextCompat.getColor(ApplicationContext.context, field)
@@ -20,10 +24,6 @@ class ColorResource {
     set(colorId) {
         CounterPreferencesManager.storedCounterColor = colorId
         field = colorId
-    }
-
-    init{
-        this.color = CounterPreferencesManager.storedCounterColor
     }
 
     fun resetColor(){
