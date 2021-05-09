@@ -4,68 +4,50 @@ import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
-import hr.dominikricko.rma_lv3_1.R
-import hr.dominikricko.rma_lv3_1.databinding.ActivityMainBinding
 import hr.dominikricko.rma_lv3_1.counter.Counter
-import hr.dominikricko.rma_lv3_1.counter.SimpleCounter
-import hr.dominikricko.rma_lv3_1.observable.Observer
+import hr.dominikricko.rma_lv3_1.databinding.ActivityMainBinding
 import hr.dominikricko.rma_lv3_1.preferences.CounterPreferencesManager
+import hr.dominikricko.rma_lv3_1.ui.viewmodel.CounterViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : AppCompatActivity(), Observer {
+class MainActivity : AppCompatActivity() {
+
+    private val viewModel by viewModel<CounterViewModel>()
 
     private lateinit var binding : ActivityMainBinding
+
     private lateinit var counterDisplay : TextView
     private lateinit var counter : Counter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater).also{
+            it.btnBlueBird.setOnClickListener { viewModel.seeBlueBird() }
+            it.btnRedBird.setOnClickListener { viewModel.seeRedBird() }
+            it.btnBrownBird.setOnClickListener { viewModel.seeBrownBird() }
+            it.btnGrayBird.setOnClickListener { viewModel.seeGrayBird() }
+
+            it.btnResetColor.setOnClickListener {
+                //updateCounterDisplayColor(0)
+            }
+
+            it.btnResetCounter.setOnClickListener {
+                counter.resetCounter()
+            }
+        }
+
         counterDisplay = binding.tvBirdCounter
 
-        initializeNewCounter(CounterPreferencesManager.storedCounterValue)
-        updateCounterDisplayColor(CounterPreferencesManager.storedCounterColor)
-
-        binding.btnBlueBird.setOnClickListener {
-            counter.incrementCounter()
-            updateCounterDisplayColor(R.color.blue)
-        }
-
-        binding.btnBrownBird.setOnClickListener {
-            counter.incrementCounter()
-            updateCounterDisplayColor(R.color.brown)
-        }
-
-        binding.btnRedBird.setOnClickListener {
-            counter.incrementCounter()
-            updateCounterDisplayColor(R.color.red)
-        }
-
-        binding.btnGrayBird.setOnClickListener {
-            counter.incrementCounter()
-            updateCounterDisplayColor(R.color.gray)
-        }
-
-        binding.btnResetColor.setOnClickListener {
-            updateCounterDisplayColor(0)
-        }
-
-        binding.btnResetCounter.setOnClickListener {
-            counter.resetCounter()
-        }
-
         setContentView(binding.root)
+
+        viewModel.blueBirdsCounter.observe(this, {binding.tvBirdCounter.text = it.toString()})
+        viewModel.redBirdsCounter.observe(this, {binding.tvBirdCounter.text = it.toString()})
+        viewModel.grayBirdsCounter.observe(this, {binding.tvBirdCounter.text = it.toString()})
+        viewModel.brownBirdsCounter.observe(this, {binding.tvBirdCounter.text = it.toString()})
+
     }
-
-    private fun initializeNewCounter(startValue : Int){
-
-        if(this::counter.isInitialized) counter.unsubscribe(this)
-
-        counter = SimpleCounter(startValue)
-        counter.subscribe(this)
-        update()
-    }
-
+/*
     private fun updateCounterDisplayColor(color : Int){
         try {
             val resolvedColor = getColor(color)
@@ -77,9 +59,5 @@ class MainActivity : AppCompatActivity(), Observer {
         }
 
     }
-
-    override fun update() {
-        counterDisplay.text = counter.counter.toString()
-    }
-
+*/
 }
