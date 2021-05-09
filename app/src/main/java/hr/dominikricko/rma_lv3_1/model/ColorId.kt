@@ -2,6 +2,7 @@ package hr.dominikricko.rma_lv3_1.model
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import hr.dominikricko.rma_lv3_1.R
 
 class ColorId(startingColor: Int) {
 
@@ -10,7 +11,7 @@ class ColorId(startingColor: Int) {
         get() = _color
 
     fun resetColor(){
-        _color.postValue(0)
+        _color.postValue(R.color.transparent)
     }
 
     fun setColor(colorId: Int){
