@@ -1,4 +1,4 @@
-package hr.dominikricko.rma_lv3_1.preferences
+package hr.dominikricko.rma_lv3_1.persistence
 
 import android.content.Context
 import android.content.SharedPreferences
