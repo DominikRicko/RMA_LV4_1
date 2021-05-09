@@ -2,40 +2,41 @@ package hr.dominikricko.rma_lv3_1.ui.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import hr.dominikricko.rma_lv3_1.R
 import hr.dominikricko.rma_lv3_1.model.ColorResource
 import hr.dominikricko.rma_lv3_1.model.Counter
-import hr.dominikricko.rma_lv3_1.persistence.CounterPreferencesManager
 
 class CounterViewModel : ViewModel() {
 
-    val redBirdsCounter = MutableLiveData<Counter>()
-    val blueBirdsCounter = MutableLiveData<Counter>()
-    val brownBirdsCounter = MutableLiveData<Counter>()
-    val grayBirdsCounter = MutableLiveData<Counter>()
-
     val birdsCounter = MutableLiveData<Counter>()
-
     val displayColor = MutableLiveData<ColorResource>()
 
     fun seeRedBird(){
-        redBirdsCounter.value?.incrementCounter()
         birdsCounter.value?.incrementCounter()
-        CounterPreferencesManager.storedCounterValue = birdsCounter.value?.counter ?: 0
+        displayColor.value?.color = R.color.red
     }
+
     fun seeBlueBird(){
-        redBirdsCounter.value?.incrementCounter()
         birdsCounter.value?.incrementCounter()
-        CounterPreferencesManager.storedCounterValue = birdsCounter.value?.counter ?: 0
+        displayColor.value?.color = R.color.blue
     }
+
     fun seeBrownBird(){
-        redBirdsCounter.value?.incrementCounter()
         birdsCounter.value?.incrementCounter()
-        CounterPreferencesManager.storedCounterValue = birdsCounter.value?.counter ?: 0
+        displayColor.value?.color = R.color.brown
     }
+
     fun seeGrayBird(){
-        redBirdsCounter.value?.incrementCounter()
         birdsCounter.value?.incrementCounter()
-        CounterPreferencesManager.storedCounterValue = birdsCounter.value?.counter ?: 0
+        displayColor.value?.color = R.color.gray
+    }
+
+    fun resetColor(){
+        displayColor.value?.resetColor()
+    }
+
+    fun resetCounter(){
+        birdsCounter.value?.resetCounter()
     }
 
 }
