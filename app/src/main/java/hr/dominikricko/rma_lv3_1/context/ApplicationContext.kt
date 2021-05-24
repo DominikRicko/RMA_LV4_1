@@ -10,12 +10,15 @@ import org.koin.core.context.GlobalContext.startKoin
 class ApplicationContext : Application() {
 
     companion object{
-        lateinit var context: Context
+        lateinit var instance : ApplicationContext
+
+        val context: Context
+            get() = instance.applicationContext
     }
 
     override fun onCreate() {
         super.onCreate()
-        context = this
+        instance = this
 
         startKoin{
             androidContext(this@ApplicationContext)

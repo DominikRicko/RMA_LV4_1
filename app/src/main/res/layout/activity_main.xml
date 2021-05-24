@@ -8,6 +8,9 @@
         <variable
             name="viewModel"
             type="hr.dominikricko.rma_lv3_1.ui.viewmodel.CounterViewModel" />
+        <variable
+            name="context"
+            type="hr.dominikricko.rma_lv3_1.context.ApplicationContext"/>
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
@@ -58,9 +61,10 @@
         app:layout_constraintLeft_toLeftOf="@id/guide_start"
         app:layout_constraintRight_toRightOf="@id/guide_end"
         app:layout_constraintTop_toTopOf="@id/guide_top"
-        app:text="@{String.valueOf(viewModel.birdsSeen)}"
-        android:background="@{context.getColor(viewModel.birdColorSeen)}"
-        android:textSize="@dimen/counterFontSize"/>
+        android:textSize="@dimen/counterFontSize"
+        android:text="@{viewModel.birdsSeen.toString()}"
+        android:background="@{context.getColor(viewModel.birdColorSeen)}"/>
+
     
     <Button
         android:id="@+id/btn_redBird"
